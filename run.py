@@ -14,6 +14,7 @@ def main():
     with open("tests/mock_data.json") as f:
         raw_data = json.load(f)
     aide_data, shift_data = data_cleaner.clean(raw_data)
+    db_accessor.add_aides_to_db(aide_data)
     db_accessor.add_shifts_to_db(shift_data)
     # web_hosting.run()
 
