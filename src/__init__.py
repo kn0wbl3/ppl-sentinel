@@ -1,3 +1,6 @@
+from dotenv import load_dotenv  # only used when dev locally
+
+load_dotenv()
 # from flask import Flask
 # from flask_sqlalchemy import SQLAlchemy
 # from src import models

@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS shifts (
     pa_ppl_id VARCHAR(20),
     date_time_in TIMESTAMP,
     date_time_out TIMESTAMP,
-    payroll_period VARCHAR(40),
+    -- payroll_period VARCHAR(40),
     shift_status VARCHAR(50),
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_pa_ppl_id FOREIGN KEY (pa_ppl_id)
@@ -23,12 +23,12 @@ CREATE TABLE IF NOT EXISTS shift_history (
     pa_ppl_id VARCHAR(20),
     date_time_in TIMESTAMP,
     date_time_out TIMESTAMP,
-    payroll_period VARCHAR(40),
+    -- payroll_period VARCHAR(40),
     shift_status VARCHAR(50),
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_shift_id FOREIGN KEY (shift_id)
-        REFERENCES shifts(shift_id)
-        ON DELETE CASCADE
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    -- CONSTRAINT fk_shift_id FOREIGN KEY (shift_id)
+    --     REFERENCES shifts(shift_id)
+    --     ON DELETE CASCADE
 );
 
 -- function and trigger for shift_id
@@ -41,7 +41,6 @@ DECLARE
 BEGIN
     ppl_suffix := RIGHT(NEW.pa_ppl_id, 4);
     in_suffix := TO_CHAR(NEW.date_time_in, 'YYYYMMDD_HH24MI');
-    -- out_suffix := TO_CHAR(NEW.date_time_out, 'HH24MI');
 
     NEW.shift_id := ppl_suffix || in_suffix;
     RETURN NEW;
@@ -50,6 +49,11 @@ $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER set_shift_id
 BEFORE INSERT ON shifts
+FOR EACH ROW
+EXECUTE FUNCTION generate_shift_id();
+
+CREATE TRIGGER set_shift_id
+BEFORE INSERT ON shift_history
 FOR EACH ROW
 EXECUTE FUNCTION generate_shift_id();
 

@@ -1,1 +1,5 @@
 URL = "https://pplathomeb2c.pplfirst.com/pplfirstprod.onmicrosoft.com/b2c_1_ng_prd_email_signin/oauth2/v2.0/authorize?client_id=50a4023c-08dd-439d-aa98-9cc3f4275d6e&scope=openid%20profile%20offline_access%2050a4023c-08dd-439d-aa98-9cc3f4275d6e%20openid%20profile%20offline_access&redirect_uri=https%3A%2F%2Fpplathome.pplfirst.com%2F&client-request-id=01967519-0658-78a7-98b2-bd4666087661&response_mode=fragment&response_type=code&x-client-SKU=msal.js.browser&x-client-VER=3.16.0&client_info=1&code_challenge=B5RxK16fnEr-CQRb7sZJZsFoFsD6G4OUxJZpK1FLwbQ&code_challenge_method=S256&nonce=01967519-0658-7f8a-83df-4fde4fa74269&state=eyJpZCI6IjAxOTY3NTE5LTA2NTgtNzliMi1hZDY2LTNmYTY4NGEwMmIzZCIsIm1ldGEiOnsiaW50ZXJhY3Rpb25UeXBlIjoicmVkaXJlY3QifX0%3D"
+
+HOST = "localhost"
+
+PORT = 5432  # default PostgreSQL port
